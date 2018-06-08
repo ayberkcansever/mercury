@@ -1,0 +1,15 @@
+syntax = "proto3";
+package com.mercury.grpc;
+
+message MessageRequest {
+  string to = 1;
+  string message = 2;
+}
+
+message MessageResponse {
+  string resp = 1;
+}
+
+service MessageService {
+  rpc send(MessageRequest) returns (MessageResponse);
+}

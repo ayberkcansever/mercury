@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="userAttributes">
+            <map>
+                <entry key="grpcIp" value="127.0.0.1"/>
+                <entry key="grpcPort" value="7778"/>
+            </map>
+        </property>
+        <!-- Set to true to enable distributed class loading for examples, default is false. -->
+        <property name="clientMode" value="false"/>
+        <property name="peerClassLoadingEnabled" value="true"/>
+        <!-- Configure internal thread pool. -->
+        <property name="publicThreadPoolSize" value="64"/>
+        <!-- Configure system thread pool. -->
+        <property name="systemThreadPoolSize" value="32"/>
+        <property name="lifecycleBeans">
+            <list>
+                <bean class="com.github.ayberkcansever.mercury.cache.CacheHolder"/>
+            </list>
+        </property>
+        <property name="cacheConfiguration">
+            <list>
+                <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                    <property name="name" value="presenceCache"/>
+                    <property name="atomicityMode" value="TRANSACTIONAL"/>
+                    <property name="cacheMode" value="REPLICATED"/>
+                </bean>
+            </list>
+        </property>
+        <!-- Explicitly configure TCP discovery SPI to provide list of initial nodes. -->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <!-- In distributed environment, replace with actual host IP address. -->
+                                <value>127.0.0.1:47500</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>
