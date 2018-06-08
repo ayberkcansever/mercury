@@ -1,5 +1,5 @@
 syntax = "proto3";
-package com.mercury.grpc;
+package com.github.ayberkcansever.mercury.grpc;
 
 message MessageRequest {
   string to = 1;
