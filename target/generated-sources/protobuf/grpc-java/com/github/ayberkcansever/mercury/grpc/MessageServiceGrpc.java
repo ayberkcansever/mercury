@@ -1,12 +1,19 @@
 package com.github.ayberkcansever.mercury.grpc;
 
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 
 /**
  */
@@ -17,20 +24,20 @@ public final class MessageServiceGrpc {
 
   private MessageServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "com.mercury.grpc.MessageService";
+  public static final String SERVICE_NAME = "com.github.ayberkcansever.mercury.grpc.MessageService";
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<Mercury.MessageRequest,
-      Mercury.MessageResponse> METHOD_SEND =
-      io.grpc.MethodDescriptor.<Mercury.MessageRequest, Mercury.MessageResponse>newBuilder()
+  public static final io.grpc.MethodDescriptor<com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest,
+      com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse> METHOD_SEND =
+      io.grpc.MethodDescriptor.<com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest, com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "com.mercury.grpc.MessageService", "send"))
+              "com.github.ayberkcansever.mercury.grpc.MessageService", "send"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              Mercury.MessageRequest.getDefaultInstance()))
+              com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              Mercury.MessageResponse.getDefaultInstance()))
+              com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.getDefaultInstance()))
           .setSchemaDescriptor(new MessageServiceMethodDescriptorSupplier("send"))
           .build();
 
@@ -63,19 +70,19 @@ public final class MessageServiceGrpc {
 
     /**
      */
-    public void send(Mercury.MessageRequest request,
-        io.grpc.stub.StreamObserver<Mercury.MessageResponse> responseObserver) {
+    public void send(com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest request,
+        io.grpc.stub.StreamObserver<com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_SEND, responseObserver);
     }
 
-    @Override public final io.grpc.ServerServiceDefinition bindService() {
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             METHOD_SEND,
             asyncUnaryCall(
               new MethodHandlers<
-                Mercury.MessageRequest,
-                Mercury.MessageResponse>(
+                com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest,
+                com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse>(
                   this, METHODID_SEND)))
           .build();
     }
@@ -93,7 +100,7 @@ public final class MessageServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected MessageServiceStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new MessageServiceStub(channel, callOptions);
@@ -101,8 +108,8 @@ public final class MessageServiceGrpc {
 
     /**
      */
-    public void send(Mercury.MessageRequest request,
-        io.grpc.stub.StreamObserver<Mercury.MessageResponse> responseObserver) {
+    public void send(com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest request,
+        io.grpc.stub.StreamObserver<com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_SEND, getCallOptions()), request, responseObserver);
     }
@@ -120,7 +127,7 @@ public final class MessageServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected MessageServiceBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new MessageServiceBlockingStub(channel, callOptions);
@@ -128,7 +135,7 @@ public final class MessageServiceGrpc {
 
     /**
      */
-    public Mercury.MessageResponse send(Mercury.MessageRequest request) {
+    public com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse send(com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_SEND, getCallOptions(), request);
     }
@@ -146,7 +153,7 @@ public final class MessageServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected MessageServiceFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new MessageServiceFutureStub(channel, callOptions);
@@ -154,8 +161,8 @@ public final class MessageServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Mercury.MessageResponse> send(
-        Mercury.MessageRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse> send(
+        com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_SEND, getCallOptions()), request);
     }
@@ -176,21 +183,21 @@ public final class MessageServiceGrpc {
       this.methodId = methodId;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SEND:
-          serviceImpl.send((Mercury.MessageRequest) request,
-              (io.grpc.stub.StreamObserver<Mercury.MessageResponse>) responseObserver);
+          serviceImpl.send((com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest) request,
+              (io.grpc.stub.StreamObserver<com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
       }
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -204,12 +211,12 @@ public final class MessageServiceGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     MessageServiceBaseDescriptorSupplier() {}
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return Mercury.getDescriptor();
+      return com.github.ayberkcansever.mercury.grpc.Mercury.getDescriptor();
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("MessageService");
     }
@@ -229,7 +236,7 @@ public final class MessageServiceGrpc {
       this.methodName = methodName;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }

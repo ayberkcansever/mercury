@@ -1,5 +1,6 @@
 package com.github.ayberkcansever.mercury.io;
 
+import com.github.ayberkcansever.mercury.Mercury;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -33,7 +34,7 @@ public class SocketServer {
                         .childHandler(new ChannelInitializer<SocketChannel>() {
                             @Override
                             public void initChannel(SocketChannel ch) throws Exception {
-                                ch.pipeline().addLast(new SocketHandler());
+                                ch.pipeline().addLast(Mercury.getClientClazz().newInstance());
                             }
                         })
                         .option(ChannelOption.SO_BACKLOG, 128)

@@ -37,7 +37,7 @@ public class GRpcServer {
                         .addService(new MessageServiceImpl())
                         .build();
                 server.start();
-                LOG.info("GRpc server started at port: " + localGRpcPort);
+                LOG.info("gRPC server started at port: " + localGRpcPort);
                 server.awaitTermination();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -2,7 +2,7 @@ package com.github.ayberkcansever.mercury.cache;
 
 import com.github.ayberkcansever.mercury.grpc.client.ClientHolder;
 import com.github.ayberkcansever.mercury.grpc.server.GRpcServer;
-import com.github.ayberkcansever.mercury.util.StringUtil;
+import com.github.ayberkcansever.mercury.utils.StringUtil;
 import lombok.Getter;
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
