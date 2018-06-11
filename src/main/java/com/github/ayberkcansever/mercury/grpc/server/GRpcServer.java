@@ -1,12 +1,11 @@
 package com.github.ayberkcansever.mercury.grpc.server;
 
-import com.github.ayberkcansever.mercury.cache.CacheHolder;
+import com.github.ayberkcansever.mercury.Mercury;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,17 +18,14 @@ public class GRpcServer {
     public static final String GRPC_IP_USER_ATTRIBUTE = "grpcIp";
     public static final String GRPC_PORT_USER_ATTRIBUTE = "grpcPort";
 
-    @Getter private String localGRpcIp;
     @Getter private int localGRpcPort;
     @Getter private String localGRpcServerUrl;
 
-    @Autowired
-    private CacheHolder cacheHolder;
-
     public void init() {
-        localGRpcIp = cacheHolder.getIgniteConfigurationUserAttribute(GRPC_IP_USER_ATTRIBUTE).toString();
-        localGRpcPort = Integer.parseInt(cacheHolder.getIgniteConfigurationUserAttribute(GRPC_PORT_USER_ATTRIBUTE).toString());
-        localGRpcServerUrl = localGRpcIp.concat(":").concat(String.valueOf(localGRpcPort));
+        localGRpcPort = Mercury.getMercuryConfig().getGRpcPort();
+        localGRpcServerUrl = Mercury.getMercuryConfig().getGRpcIp()
+                .concat(":")
+                .concat(String.valueOf(Mercury.getMercuryConfig().getGRpcPort()));
 
         new Thread(() -> {
             try {

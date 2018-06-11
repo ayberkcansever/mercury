@@ -27,6 +27,8 @@ public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelUnregistered();
+        MercuryClientHolder.removeClient(id);
+        Mercury.instance().getCacheHolder().getPresenceCache().remove(id);
         Mercury.instance().getEventBus().postEvent(new IOEvent(this, IOEventType.CLIENT_DISCONNECTED));
     }
 
@@ -43,6 +45,12 @@ public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
 
     public void send(String message) {
         ctx.writeAndFlush(Unpooled.wrappedBuffer(message.getBytes(CharsetUtil.UTF_8)));
+    }
+
+    public void identify(String id) {
+        this.id = id;
+        MercuryClientHolder.putClient(id, this);
+        Mercury.instance().getCacheHolder().getPresenceCache().put(id, Mercury.instance().getGRpcServer().getLocalGRpcServerUrl());
     }
 
     protected abstract void handleMessage(String message);

@@ -8,7 +8,7 @@
         <property name="userAttributes">
             <map>
                 <entry key="grpcIp" value="127.0.0.1"/>
-                <entry key="grpcPort" value="7778"/>
+                <entry key="grpcPort" value="7777"/>
             </map>
         </property>
         <!-- Set to true to enable distributed class loading for examples, default is false. -->

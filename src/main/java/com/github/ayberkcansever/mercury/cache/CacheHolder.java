@@ -1,6 +1,8 @@
 package com.github.ayberkcansever.mercury.cache;
 
+import com.github.ayberkcansever.mercury.Mercury;
 import com.github.ayberkcansever.mercury.grpc.client.ClientHolder;
+import com.github.ayberkcansever.mercury.grpc.client.GRpcClient;
 import com.github.ayberkcansever.mercury.grpc.server.GRpcServer;
 import com.github.ayberkcansever.mercury.utils.StringUtil;
 import lombok.Getter;
@@ -15,9 +17,23 @@ import org.apache.ignite.lifecycle.LifecycleBean;
 import org.apache.ignite.lifecycle.LifecycleEventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import javax.annotation.PostConstruct;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 @Component
 public class CacheHolder implements LifecycleBean {
@@ -33,7 +49,32 @@ public class CacheHolder implements LifecycleBean {
 
     @PostConstruct
     public void init() {
-        ignite = Ignition.start("ignite-config.xml");
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("ignite-config.xml");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(is);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+
+            Node gRpcIpNode = (Node) xPath.compile("/beans/bean/property[@name='userAttributes']/map/entry[@key='grpcIp']")
+                    .evaluate(doc, XPathConstants.NODE);
+            gRpcIpNode.getAttributes().getNamedItem("value").setNodeValue(Mercury.getMercuryConfig().getGRpcIp());
+
+            Node gRpcPortNode = (Node) xPath.compile("/beans/bean/property[@name='userAttributes']/map/entry[@key='grpcPort']")
+                    .evaluate(doc, XPathConstants.NODE);
+            gRpcPortNode.getAttributes().getNamedItem("value").setNodeValue(String.valueOf(Mercury.getMercuryConfig().getGRpcPort()));
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            Source xmlSource = new DOMSource(doc);
+            Result outputTarget = new StreamResult(outputStream);
+            TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
+            ignite = Ignition.start(new ByteArrayInputStream(outputStream.toByteArray()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //ignite = Ignition.start("ignite-config.xml");
         gRpcServer.init();
 
         IgnitePredicate<DiscoveryEvent> nodeJoinedListener = evt -> {
@@ -75,6 +116,10 @@ public class CacheHolder implements LifecycleBean {
 
     public String getIgniteConfigurationUserAttribute(String key) {
         return ignite.configuration().getUserAttributes().get(key).toString();
+    }
+
+    public GRpcClient getGRpcClient(String serverUrl) {
+        return clientHolder.getNode(serverUrl);
     }
 
 }

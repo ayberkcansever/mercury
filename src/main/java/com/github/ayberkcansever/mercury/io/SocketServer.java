@@ -20,8 +20,6 @@ public class SocketServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(SocketServer.class);
 
-    private int port = 5555;
-
     @PostConstruct
     public void init() {
         new Thread(() -> {
@@ -34,14 +32,15 @@ public class SocketServer {
                         .childHandler(new ChannelInitializer<SocketChannel>() {
                             @Override
                             public void initChannel(SocketChannel ch) throws Exception {
-                                ch.pipeline().addLast(Mercury.getClientClazz().newInstance());
+                                ch.pipeline().addLast(Mercury.getMercuryConfig().getClientClass().newInstance());
                             }
                         })
                         .option(ChannelOption.SO_BACKLOG, 128)
                         .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-                ChannelFuture f = b.bind(port).sync();
-                LOG.info("Socket server started at port: " + port);
+                int serverPort = Mercury.getMercuryConfig().getServerPort();
+                ChannelFuture f = b.bind(serverPort).sync();
+                LOG.info("Socket server started at port: " + serverPort);
                 f.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();

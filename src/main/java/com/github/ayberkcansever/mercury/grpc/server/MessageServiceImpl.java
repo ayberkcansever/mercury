@@ -2,6 +2,8 @@ package com.github.ayberkcansever.mercury.grpc.server;
 
 import com.github.ayberkcansever.mercury.grpc.Mercury;
 import com.github.ayberkcansever.mercury.grpc.MessageServiceGrpc;
+import com.github.ayberkcansever.mercury.io.MercuryClient;
+import com.github.ayberkcansever.mercury.io.MercuryClientHolder;
 
 public class MessageServiceImpl extends MessageServiceGrpc.MessageServiceImplBase {
 
@@ -9,11 +11,23 @@ public class MessageServiceImpl extends MessageServiceGrpc.MessageServiceImplBas
     public void send(Mercury.MessageRequest request,
                      io.grpc.stub.StreamObserver<Mercury.MessageResponse> responseObserver) {
         System.out.println(request);
-
-        // You must use a builder to construct a new Protobuffer object
-        Mercury.MessageResponse response = Mercury.MessageResponse.newBuilder()
-                .setResp("OK")
-                .build();
+        Mercury.MessageResponse response;
+        String to = request.getTo();
+        MercuryClient mercuryClient = MercuryClientHolder.getClient(to);
+        // send message to connected client
+        if(mercuryClient != null) {
+            mercuryClient.send(request.getMessage());
+            response = Mercury.MessageResponse.newBuilder()
+                    .setResp("OK")
+                    .build();
+        }
+        // client not connected but present in the cache
+        else {
+            // todo:
+            response = Mercury.MessageResponse.newBuilder()
+                    .setResp("NOK")
+                    .build();
+        }
 
         // Use responseObserver to send a single response back
         responseObserver.onNext(response);
