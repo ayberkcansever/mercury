@@ -1,2 +1,2 @@
 # mercury
-Distributed Messaging Framework based on Netty, Apache Ignite, GRpc
+Distributed Messaging Framework based on Netty, Apache Ignite, gRPC
