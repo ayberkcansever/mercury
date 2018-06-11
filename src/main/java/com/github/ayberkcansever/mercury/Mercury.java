@@ -60,12 +60,9 @@ public class Mercury {
             executor.setMaxPoolSize(10);
             executor.setQueueCapacity(1000);
             executor.setThreadNamePrefix("MessageSender-");
-            executor.initialize();
-            return executor;
-        } else {
-            executor.initialize();
-            return executor;
         }
+        executor.initialize();
+        return executor;
     }
 
     @Async
