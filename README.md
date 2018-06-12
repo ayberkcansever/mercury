@@ -18,9 +18,9 @@ The figures below show the single vs multi node architecture.
 
 # How to use Mercury?
 
-It is enough to examine the demo project to have the knowledge but if it is so necessary let's deep dive to the code:
+It is enough to examine the demo project to have knowledge about Mercury but let's deep dive to the code a little bit:
 
-At the startup of the application it is enough to initialize Mercury with the appropriate configuration.
+At startup of your main application it is enough to initialize Mercury with the appropriate configuration.
 
 ```java
   MercuryConfig mercuryConfig = new MercuryConfig.MercuryConfigBuilder()
@@ -33,9 +33,9 @@ At the startup of the application it is enough to initialize Mercury with the ap
   Mercury mercury = new Mercury().init(mercuryConfig);
 ```
 
-Configure node's gRPC host and port, configure socket server port, set Client implementation class which is the socket client and ThreadPoolTaskExecutor for message sending threads.
+Configure Mercury node's gRPC host and port, configure socket server port, set Client implementation class which is the socket client and set ThreadPoolTaskExecutor for message sending threads.
 
-There are some events posted by Mercury to the main application. Main application may catch these events if the listeners are registered. Available listeners are:
+There are some events posted by Mercury to the main application. Main application may want to catch these events by registering the listeners. Available listeners are:
 
 1. IOEventListener
 2. ClientEventListener
@@ -49,7 +49,7 @@ These listeners can be registered after the Mercury initialization:
     mercury.getEventBus().register(new SomeMessageEventListener());
 ```
 
-Now we have a Mercury node which is ready to be a piece of a Mercury cluster and a client can connect to the node through the server socket. Mercury **does not** care the protocol you implement, it only delivers the messages. So you are free to implement your own messaging protocol.
+Now we have a Mercury node which is ready to be a piece of a Mercury cluster. A client can connect to this node through the server socket. Mercury **does not** care the messaging protocol you implement, it only delivers the messages. **So you are free to implement your own messaging protocol based on JSON or XML or use XMPP, LEMP.**
 
 The connected clients must be identified for receiving messages. When a client connects to a Mercury node, a random unique id is assigned to this client but it is not identified yet. It must prove its identity through the main application. The main application can apply a login mechanism or some other mechanisms to identify the client. It is up to the main application and the messaging protocol it implements. But the important thing is to call **identify** method of the Client class after the successful identification. For example, let's say that the client sends a message **id:Alice** for identifying itself after connecting to the socket, our Client will be:
 
