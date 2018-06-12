@@ -17,3 +17,32 @@ The figures below show the single vs multi node architecture.
 <img src="https://preview.ibb.co/eZp7Ny/Screen_Shot_2018_06_12_at_16_14_14.png" width="800" height="500">
 
 # How to use Mercury?
+
+At the startup it is enough to initialize Mercury with the appropriate configuration.
+
+```java
+  MercuryConfig mercuryConfig = new MercuryConfig.MercuryConfigBuilder()
+				.setGRpcIp("127.0.0.1")
+				.setGRpcPort(6666)
+				.setServerPort(5555)
+				.setClientClass(Client.class)
+				.setMessageThreadPoolTaskExecutor(executor)
+				.build();
+  Mercury mercury = new Mercury().init(mercuryConfig);
+```
+
+Configure node's gRPC host and port, configure socket server port, set Client implementation class which is the socket client and ThreadPoolTaskExecutor for message sending threads.
+
+There are some events posted by Mercury to the main application. Main application may catch these events if the listeners are registered. Available listeners are:
+
+1. IOEventListener
+2. ClientEventListener
+3. MessageEventListener
+
+These listeners can be registered after the Mercury initialization:
+
+```java
+    mercury.getEventBus().register(new SomeIOEventListener());
+		mercury.getEventBus().register(new SomeClientEventListener());
+		mercury.getEventBus().register(new SomeMessageEventListener());
+```
