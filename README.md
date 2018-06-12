@@ -18,7 +18,9 @@ The figures below show the single vs multi node architecture.
 
 # How to use Mercury?
 
-At the startup it is enough to initialize Mercury with the appropriate configuration.
+It is enough to examine the demo project to have the knowledge but if it is so necessary let's deep dive to the code:
+
+At the startup of the application it is enough to initialize Mercury with the appropriate configuration.
 
 ```java
   MercuryConfig mercuryConfig = new MercuryConfig.MercuryConfigBuilder()
@@ -46,3 +48,5 @@ These listeners can be registered after the Mercury initialization:
     mercury.getEventBus().register(new SomeClientEventListener());
     mercury.getEventBus().register(new SomeMessageEventListener());
 ```
+
+Now we have a Mercury node which is ready to be a piece of a Mercury cluster and a client can connect to the node through the server socket. Mercury **does not** care the protocol you implement, it only delivers the messages. So you are free to implement your own messaging protocol.
