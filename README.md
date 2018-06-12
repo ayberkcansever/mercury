@@ -50,3 +50,6 @@ These listeners can be registered after the Mercury initialization:
 ```
 
 Now we have a Mercury node which is ready to be a piece of a Mercury cluster and a client can connect to the node through the server socket. Mercury **does not** care the protocol you implement, it only delivers the messages. So you are free to implement your own messaging protocol.
+
+If your application is a Spring boot application, you do not need to annotate your main class **(@SpringBootApplication)** and do not need to run Spring application **(SpringApplication.run)** if you initialized Mercury, because Mercury is a Spring boot application and initialize the application context for you :P
+
