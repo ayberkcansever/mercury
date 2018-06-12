@@ -43,6 +43,6 @@ These listeners can be registered after the Mercury initialization:
 
 ```java
     mercury.getEventBus().register(new SomeIOEventListener());
-		mercury.getEventBus().register(new SomeClientEventListener());
-		mercury.getEventBus().register(new SomeMessageEventListener());
+    mercury.getEventBus().register(new SomeClientEventListener());
+    mercury.getEventBus().register(new SomeMessageEventListener());
 ```
