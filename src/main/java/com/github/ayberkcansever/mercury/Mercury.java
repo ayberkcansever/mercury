@@ -42,6 +42,10 @@ public class Mercury {
     @Autowired
     private ClientHolder clientHolder;
 
+    public static void main(String[] args) {
+
+    }
+
     public static Mercury init(MercuryConfig config) {
         mercuryConfig = config;
         ConfigurableApplicationContext ctx = SpringApplication.run(Mercury.class);
