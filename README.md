@@ -66,8 +66,9 @@ public class Client extends MercuryClient {
 ```
 
 Now this client is Alice and any other clients can send messages to Alice. 
+
 **MercuryClient** has a **route(String to, String message)** method to send messages to the target clients. It is straightforward to send messages after deciding details of the messaging protocol that main application implements.
 
 ## Important
-If your application is a Spring boot application, you do not need to annotate your main class **(@SpringBootApplication)** and do not need to run Spring application **(SpringApplication.run)** if you initialized Mercury, because Mercury is a Spring boot application and initialize the application context for you :P
+If your application is a Spring boot application, you do not need to annotate your main class **(@SpringBootApplication)** and do not need to run Spring application **(SpringApplication.run)** if you initialize Mercury because Mercury is a Spring boot application and initialize the application context for you :P
 
