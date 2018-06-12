@@ -9,10 +9,10 @@ public class DemoIOEventListener extends IOEventListener {
     protected void handle(IOEvent event) {
         switch (event.getType()) {
             case CLIENT_CONNECTED:
-                System.out.println("CONNECTED: " + event.getMercuryClient().getId());
+                System.out.println("CONNECTED: " + event.getMercuryClient().getTempId());
                 break;
             case CLIENT_DISCONNECTED:
-                System.out.println("DISCONNECTED: " + event.getMercuryClient().getId());
+                System.out.println("DISCONNECTED: " + event.getMercuryClient().getTempId());
                 break;
         }
     }

@@ -1,26 +1,26 @@
-package com.github.ayberkcansever.mercury.io;
+package com.github.ayberkcansever.mercury.client;
 
 import com.github.ayberkcansever.mercury.Mercury;
+import com.github.ayberkcansever.mercury.client.event.ClientEvent;
+import com.github.ayberkcansever.mercury.client.event.ClientEventType;
 import com.github.ayberkcansever.mercury.io.event.IOEvent;
 import com.github.ayberkcansever.mercury.io.event.IOEventType;
 import com.github.ayberkcansever.mercury.utils.StringUtil;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
 import lombok.Getter;
 
 public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
 
     @Getter private ChannelHandlerContext ctx;
+    @Getter private String tempId;
     @Getter private String id;
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelRegistered();
         this.ctx = ctx;
-        this.id = StringUtil.generateId();
+        this.tempId = StringUtil.generateId();
         Mercury.instance().getEventBus().postEvent(new IOEvent(this, IOEventType.CLIENT_CONNECTED));
     }
 
@@ -34,7 +34,7 @@ public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        handleMessage(((ByteBuf) msg).toString(CharsetUtil.UTF_8));
+        handleMessage((String) msg);
     }
 
     @Override
@@ -44,13 +44,18 @@ public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
     }
 
     public void send(String message) {
-        ctx.writeAndFlush(Unpooled.wrappedBuffer(message.getBytes(CharsetUtil.UTF_8)));
+        ctx.writeAndFlush(message);
     }
 
     public void identify(String id) {
         this.id = id;
         MercuryClientHolder.putClient(id, this);
         Mercury.instance().getCacheHolder().getPresenceCache().put(id, Mercury.instance().getGRpcServer().getLocalGRpcServerUrl());
+        Mercury.instance().getEventBus().postEvent(new ClientEvent(this, ClientEventType.IDENTIFIED));
+    }
+
+    public void route(String to, String message) {
+        Mercury.instance().routeMessage(this.id, to, message);
     }
 
     protected abstract void handleMessage(String message);

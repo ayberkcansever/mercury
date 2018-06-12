@@ -19,8 +19,11 @@ public class GRpcClient {
         stub = MessageServiceGrpc.newBlockingStub(channel);
     }
 
-    public void sendMessage(String to, String message) {
-        Mercury.MessageRequest messageRequest = Mercury.MessageRequest.newBuilder().setTo(to).setMessage(message).build();
-        stub.send(messageRequest);
+    public String sendMessage(String from, String to, String message) {
+        Mercury.MessageRequest messageRequest = Mercury.MessageRequest.newBuilder()
+                .setFrom(from)
+                .setTo(to)
+                .setMessage(message).build();
+        return stub.send(messageRequest).getResp();
     }
 }

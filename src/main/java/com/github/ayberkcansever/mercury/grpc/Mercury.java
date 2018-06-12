@@ -19,21 +19,31 @@ public final class Mercury {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string to = 1;</code>
+     * <code>string from = 1;</code>
      */
-    java.lang.String getTo();
+    String getFrom();
     /**
-     * <code>string to = 1;</code>
+     * <code>string from = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFromBytes();
+
+    /**
+     * <code>string to = 2;</code>
+     */
+    String getTo();
+    /**
+     * <code>string to = 2;</code>
      */
     com.google.protobuf.ByteString
         getToBytes();
 
     /**
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
-    java.lang.String getMessage();
+    String getMessage();
     /**
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     com.google.protobuf.ByteString
         getMessageBytes();
@@ -51,11 +61,12 @@ public final class Mercury {
       super(builder);
     }
     private MessageRequest() {
+      from_ = "";
       to_ = "";
       message_ = "";
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -84,13 +95,19 @@ public final class Mercury {
               break;
             }
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
+
+              from_ = s;
+              break;
+            }
+            case 18: {
+              String s = input.readStringRequireUtf8();
 
               to_ = s;
               break;
             }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 26: {
+              String s = input.readStringRequireUtf8();
 
               message_ = s;
               break;
@@ -109,43 +126,77 @@ public final class Mercury {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
+      return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable
+      return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.class, com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.Builder.class);
+              Mercury.MessageRequest.class, Mercury.MessageRequest.Builder.class);
     }
 
-    public static final int TO_FIELD_NUMBER = 1;
-    private volatile java.lang.Object to_;
+    public static final int FROM_FIELD_NUMBER = 1;
+    private volatile Object from_;
     /**
-     * <code>string to = 1;</code>
+     * <code>string from = 1;</code>
      */
-    public java.lang.String getTo() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getFrom() {
+      Object ref = from_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
+        from_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string from = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFromBytes() {
+      Object ref = from_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        from_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TO_FIELD_NUMBER = 2;
+    private volatile Object to_;
+    /**
+     * <code>string to = 2;</code>
+     */
+    public String getTo() {
+      Object ref = to_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
         to_ = s;
         return s;
       }
     }
     /**
-     * <code>string to = 1;</code>
+     * <code>string to = 2;</code>
      */
     public com.google.protobuf.ByteString
         getToBytes() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = to_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         to_ = b;
         return b;
       } else {
@@ -153,33 +204,33 @@ public final class Mercury {
       }
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object message_;
+    public static final int MESSAGE_FIELD_NUMBER = 3;
+    private volatile Object message_;
     /**
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getMessage() {
+      Object ref = message_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         message_ = s;
         return s;
       }
     }
     /**
-     * <code>string message = 2;</code>
+     * <code>string message = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = message_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         message_ = b;
         return b;
       } else {
@@ -199,11 +250,14 @@ public final class Mercury {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getFromBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, from_);
+      }
       if (!getToBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, to_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, to_);
       }
       if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, message_);
       }
       unknownFields.writeTo(output);
     }
@@ -213,28 +267,33 @@ public final class Mercury {
       if (size != -1) return size;
 
       size = 0;
+      if (!getFromBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, from_);
+      }
       if (!getToBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, to_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, to_);
       }
       if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, message_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest)) {
+      if (!(obj instanceof Mercury.MessageRequest)) {
         return super.equals(obj);
       }
-      com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest other = (com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest) obj;
+      Mercury.MessageRequest other = (Mercury.MessageRequest) obj;
 
       boolean result = true;
+      result = result && getFrom()
+          .equals(other.getFrom());
       result = result && getTo()
           .equals(other.getTo());
       result = result && getMessage()
@@ -243,13 +302,15 @@ public final class Mercury {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + FROM_FIELD_NUMBER;
+      hash = (53 * hash) + getFrom().hashCode();
       hash = (37 * hash) + TO_FIELD_NUMBER;
       hash = (53 * hash) + getTo().hashCode();
       hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
@@ -259,69 +320,69 @@ public final class Mercury {
       return hash;
     }
 
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(byte[] data)
+    public static Mercury.MessageRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(java.io.InputStream input)
+    public static Mercury.MessageRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseDelimitedFrom(java.io.InputStream input)
+    public static Mercury.MessageRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseDelimitedFrom(
+    public static Mercury.MessageRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parseFrom(
+    public static Mercury.MessageRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -333,7 +394,7 @@ public final class Mercury {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest prototype) {
+    public static Builder newBuilder(Mercury.MessageRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -341,9 +402,9 @@ public final class Mercury {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -353,17 +414,17 @@ public final class Mercury {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.github.ayberkcansever.mercury.grpc.MessageRequest)
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequestOrBuilder {
+        Mercury.MessageRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.class, com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.Builder.class);
+                Mercury.MessageRequest.class, Mercury.MessageRequest.Builder.class);
       }
 
       // Construct using com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.newBuilder()
@@ -372,7 +433,7 @@ public final class Mercury {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -383,6 +444,8 @@ public final class Mercury {
       }
       public Builder clear() {
         super.clear();
+        from_ = "";
+
         to_ = "";
 
         message_ = "";
@@ -392,23 +455,24 @@ public final class Mercury {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest getDefaultInstanceForType() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.getDefaultInstance();
+      public Mercury.MessageRequest getDefaultInstanceForType() {
+        return Mercury.MessageRequest.getDefaultInstance();
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest build() {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest result = buildPartial();
+      public Mercury.MessageRequest build() {
+        Mercury.MessageRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest buildPartial() {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest result = new com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest(this);
+      public Mercury.MessageRequest buildPartial() {
+        Mercury.MessageRequest result = new Mercury.MessageRequest(this);
+        result.from_ = from_;
         result.to_ = to_;
         result.message_ = message_;
         onBuilt();
@@ -420,7 +484,7 @@ public final class Mercury {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -433,25 +497,29 @@ public final class Mercury {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest) {
-          return mergeFrom((com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest)other);
+        if (other instanceof Mercury.MessageRequest) {
+          return mergeFrom((Mercury.MessageRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest other) {
-        if (other == com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(Mercury.MessageRequest other) {
+        if (other == Mercury.MessageRequest.getDefaultInstance()) return this;
+        if (!other.getFrom().isEmpty()) {
+          from_ = other.from_;
+          onChanged();
+        }
         if (!other.getTo().isEmpty()) {
           to_ = other.to_;
           onChanged();
@@ -473,11 +541,11 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest parsedMessage = null;
+        Mercury.MessageRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest) e.getUnfinishedMessage();
+          parsedMessage = (Mercury.MessageRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -487,32 +555,101 @@ public final class Mercury {
         return this;
       }
 
-      private java.lang.Object to_ = "";
+      private Object from_ = "";
       /**
-       * <code>string to = 1;</code>
+       * <code>string from = 1;</code>
        */
-      public java.lang.String getTo() {
-        java.lang.Object ref = to_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getFrom() {
+        Object ref = from_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          to_ = s;
+          String s = bs.toStringUtf8();
+          from_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
-       * <code>string to = 1;</code>
+       * <code>string from = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFromBytes() {
+        Object ref = from_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b =
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          from_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string from = 1;</code>
+       */
+      public Builder setFrom(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+
+        from_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string from = 1;</code>
+       */
+      public Builder clearFrom() {
+
+        from_ = getDefaultInstance().getFrom();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string from = 1;</code>
+       */
+      public Builder setFromBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+
+        from_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object to_ = "";
+      /**
+       * <code>string to = 2;</code>
+       */
+      public String getTo() {
+        Object ref = to_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          to_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string to = 2;</code>
        */
       public com.google.protobuf.ByteString
           getToBytes() {
-        java.lang.Object ref = to_;
+        Object ref = to_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           to_ = b;
           return b;
         } else {
@@ -520,29 +657,29 @@ public final class Mercury {
         }
       }
       /**
-       * <code>string to = 1;</code>
+       * <code>string to = 2;</code>
        */
       public Builder setTo(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         to_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string to = 1;</code>
+       * <code>string to = 2;</code>
        */
       public Builder clearTo() {
-        
+
         to_ = getDefaultInstance().getTo();
         onChanged();
         return this;
       }
       /**
-       * <code>string to = 1;</code>
+       * <code>string to = 2;</code>
        */
       public Builder setToBytes(
           com.google.protobuf.ByteString value) {
@@ -550,38 +687,38 @@ public final class Mercury {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         to_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object message_ = "";
+      private Object message_ = "";
       /**
-       * <code>string message = 2;</code>
+       * <code>string message = 3;</code>
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getMessage() {
+        Object ref = message_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           message_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string message = 3;</code>
        */
       public com.google.protobuf.ByteString
           getMessageBytes() {
-        java.lang.Object ref = message_;
+        Object ref = message_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           message_ = b;
           return b;
         } else {
@@ -589,29 +726,29 @@ public final class Mercury {
         }
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string message = 3;</code>
        */
       public Builder setMessage(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         message_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string message = 3;</code>
        */
       public Builder clearMessage() {
-        
+
         message_ = getDefaultInstance().getMessage();
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string message = 3;</code>
        */
       public Builder setMessageBytes(
           com.google.protobuf.ByteString value) {
@@ -619,7 +756,7 @@ public final class Mercury {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         message_ = value;
         onChanged();
         return this;
@@ -639,12 +776,12 @@ public final class Mercury {
     }
 
     // @@protoc_insertion_point(class_scope:com.github.ayberkcansever.mercury.grpc.MessageRequest)
-    private static final com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest DEFAULT_INSTANCE;
+    private static final Mercury.MessageRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest();
+      DEFAULT_INSTANCE = new Mercury.MessageRequest();
     }
 
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest getDefaultInstance() {
+    public static Mercury.MessageRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -662,12 +799,12 @@ public final class Mercury {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<MessageRequest> getParserForType() {
       return PARSER;
     }
 
-    public com.github.ayberkcansever.mercury.grpc.Mercury.MessageRequest getDefaultInstanceForType() {
+    public Mercury.MessageRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -680,7 +817,7 @@ public final class Mercury {
     /**
      * <code>string resp = 1;</code>
      */
-    java.lang.String getResp();
+    String getResp();
     /**
      * <code>string resp = 1;</code>
      */
@@ -703,7 +840,7 @@ public final class Mercury {
       resp_ = "";
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -732,7 +869,7 @@ public final class Mercury {
               break;
             }
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               resp_ = s;
               break;
@@ -751,29 +888,29 @@ public final class Mercury {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
+      return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable
+      return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.class, com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.Builder.class);
+              Mercury.MessageResponse.class, Mercury.MessageResponse.Builder.class);
     }
 
     public static final int RESP_FIELD_NUMBER = 1;
-    private volatile java.lang.Object resp_;
+    private volatile Object resp_;
     /**
      * <code>string resp = 1;</code>
      */
-    public java.lang.String getResp() {
-      java.lang.Object ref = resp_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getResp() {
+      Object ref = resp_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         resp_ = s;
         return s;
       }
@@ -783,11 +920,11 @@ public final class Mercury {
      */
     public com.google.protobuf.ByteString
         getRespBytes() {
-      java.lang.Object ref = resp_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+      Object ref = resp_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         resp_ = b;
         return b;
       } else {
@@ -826,15 +963,15 @@ public final class Mercury {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse)) {
+      if (!(obj instanceof Mercury.MessageResponse)) {
         return super.equals(obj);
       }
-      com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse other = (com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse) obj;
+      Mercury.MessageResponse other = (Mercury.MessageResponse) obj;
 
       boolean result = true;
       result = result && getResp()
@@ -843,7 +980,7 @@ public final class Mercury {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -857,69 +994,69 @@ public final class Mercury {
       return hash;
     }
 
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(byte[] data)
+    public static Mercury.MessageResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(java.io.InputStream input)
+    public static Mercury.MessageResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseDelimitedFrom(java.io.InputStream input)
+    public static Mercury.MessageResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseDelimitedFrom(
+    public static Mercury.MessageResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parseFrom(
+    public static Mercury.MessageResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -931,7 +1068,7 @@ public final class Mercury {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse prototype) {
+    public static Builder newBuilder(Mercury.MessageResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -939,9 +1076,9 @@ public final class Mercury {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -951,17 +1088,17 @@ public final class Mercury {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.github.ayberkcansever.mercury.grpc.MessageResponse)
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponseOrBuilder {
+        Mercury.MessageResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.class, com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.Builder.class);
+                Mercury.MessageResponse.class, Mercury.MessageResponse.Builder.class);
       }
 
       // Construct using com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.newBuilder()
@@ -970,7 +1107,7 @@ public final class Mercury {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -988,23 +1125,23 @@ public final class Mercury {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
+        return Mercury.internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse getDefaultInstanceForType() {
-        return com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.getDefaultInstance();
+      public Mercury.MessageResponse getDefaultInstanceForType() {
+        return Mercury.MessageResponse.getDefaultInstance();
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse build() {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse result = buildPartial();
+      public Mercury.MessageResponse build() {
+        Mercury.MessageResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse buildPartial() {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse result = new com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse(this);
+      public Mercury.MessageResponse buildPartial() {
+        Mercury.MessageResponse result = new Mercury.MessageResponse(this);
         result.resp_ = resp_;
         onBuilt();
         return result;
@@ -1015,7 +1152,7 @@ public final class Mercury {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -1028,25 +1165,25 @@ public final class Mercury {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse) {
-          return mergeFrom((com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse)other);
+        if (other instanceof Mercury.MessageResponse) {
+          return mergeFrom((Mercury.MessageResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse other) {
-        if (other == com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(Mercury.MessageResponse other) {
+        if (other == Mercury.MessageResponse.getDefaultInstance()) return this;
         if (!other.getResp().isEmpty()) {
           resp_ = other.resp_;
           onChanged();
@@ -1064,11 +1201,11 @@ public final class Mercury {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse parsedMessage = null;
+        Mercury.MessageResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse) e.getUnfinishedMessage();
+          parsedMessage = (Mercury.MessageResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1078,20 +1215,20 @@ public final class Mercury {
         return this;
       }
 
-      private java.lang.Object resp_ = "";
+      private Object resp_ = "";
       /**
        * <code>string resp = 1;</code>
        */
-      public java.lang.String getResp() {
-        java.lang.Object ref = resp_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getResp() {
+        Object ref = resp_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           resp_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1099,11 +1236,11 @@ public final class Mercury {
        */
       public com.google.protobuf.ByteString
           getRespBytes() {
-        java.lang.Object ref = resp_;
+        Object ref = resp_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           resp_ = b;
           return b;
         } else {
@@ -1114,11 +1251,11 @@ public final class Mercury {
        * <code>string resp = 1;</code>
        */
       public Builder setResp(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  
+
         resp_ = value;
         onChanged();
         return this;
@@ -1127,7 +1264,7 @@ public final class Mercury {
        * <code>string resp = 1;</code>
        */
       public Builder clearResp() {
-        
+
         resp_ = getDefaultInstance().getResp();
         onChanged();
         return this;
@@ -1141,7 +1278,7 @@ public final class Mercury {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        
+
         resp_ = value;
         onChanged();
         return this;
@@ -1161,12 +1298,12 @@ public final class Mercury {
     }
 
     // @@protoc_insertion_point(class_scope:com.github.ayberkcansever.mercury.grpc.MessageResponse)
-    private static final com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse DEFAULT_INSTANCE;
+    private static final Mercury.MessageResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse();
+      DEFAULT_INSTANCE = new Mercury.MessageResponse();
     }
 
-    public static com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse getDefaultInstance() {
+    public static Mercury.MessageResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1184,12 +1321,12 @@ public final class Mercury {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<MessageResponse> getParserForType() {
       return PARSER;
     }
 
-    public com.github.ayberkcansever.mercury.grpc.Mercury.MessageResponse getDefaultInstanceForType() {
+    public Mercury.MessageResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1197,12 +1334,12 @@ public final class Mercury {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable;
 
@@ -1213,15 +1350,15 @@ public final class Mercury {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\rmercury.proto\022&com.github.ayberkcansev" +
-      "er.mercury.grpc\"-\n\016MessageRequest\022\n\n\002to\030" +
-      "\001 \001(\t\022\017\n\007message\030\002 \001(\t\"\037\n\017MessageRespons" +
-      "e\022\014\n\004resp\030\001 \001(\t2\211\001\n\016MessageService\022w\n\004se" +
-      "nd\0226.com.github.ayberkcansever.mercury.g" +
-      "rpc.MessageRequest\0327.com.github.ayberkca" +
-      "nsever.mercury.grpc.MessageResponseb\006pro" +
-      "to3"
+      "er.mercury.grpc\";\n\016MessageRequest\022\014\n\004fro" +
+      "m\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\037\n\017" +
+      "MessageResponse\022\014\n\004resp\030\001 \001(\t2\213\001\n\016Messag" +
+      "eService\022y\n\004send\0226.com.github.ayberkcans" +
+      "ever.mercury.grpc.MessageRequest\0327.com.g" +
+      "ithub.ayberkcansever.mercury.grpc.Messag" +
+      "eResponse\"\000b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1240,13 +1377,13 @@ public final class Mercury {
     internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_github_ayberkcansever_mercury_grpc_MessageRequest_descriptor,
-        new java.lang.String[] { "To", "Message", });
+        new String[] { "From", "To", "Message", });
     internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_github_ayberkcansever_mercury_grpc_MessageResponse_descriptor,
-        new java.lang.String[] { "Resp", });
+        new String[] { "Resp", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

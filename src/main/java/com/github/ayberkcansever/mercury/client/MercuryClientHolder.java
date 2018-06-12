@@ -1,4 +1,4 @@
-package com.github.ayberkcansever.mercury.io;
+package com.github.ayberkcansever.mercury.client;
 
 import java.util.HashMap;
 import java.util.Map;

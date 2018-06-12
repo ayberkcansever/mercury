@@ -1,13 +1,15 @@
 package com.github.ayberkcansever.mercury;
 
 import com.github.ayberkcansever.mercury.cache.CacheHolder;
+import com.github.ayberkcansever.mercury.client.MercuryClient;
+import com.github.ayberkcansever.mercury.client.MercuryClientHolder;
 import com.github.ayberkcansever.mercury.config.MercuryConfig;
 import com.github.ayberkcansever.mercury.event.MercuryEventBus;
 import com.github.ayberkcansever.mercury.grpc.client.ClientHolder;
 import com.github.ayberkcansever.mercury.grpc.client.GRpcClient;
 import com.github.ayberkcansever.mercury.grpc.server.GRpcServer;
-import com.github.ayberkcansever.mercury.io.MercuryClient;
-import com.github.ayberkcansever.mercury.io.MercuryClientHolder;
+import com.github.ayberkcansever.mercury.message.event.MessageEvent;
+import com.github.ayberkcansever.mercury.message.event.MessageEventType;
 import com.google.common.base.Strings;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,7 @@ public class Mercury {
     }
 
     @Async
-    public void routeMessage(String to, String message) {
+    public void routeMessage(String from, String to, String message) {
         String presenceNode = cacheHolder.getPresenceCache().get(to);
         if(!Strings.isNullOrEmpty(presenceNode)) {
             // client connected to local node
@@ -74,23 +76,32 @@ public class Mercury {
                 MercuryClient mercuryClient = MercuryClientHolder.getClient(to);
                 if(mercuryClient != null) {
                     mercuryClient.send(message);
+                    Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.SENT));
                 }
-                // client not connected but present in the cache
+                // client not connected but present in the presence cache
                 else {
-                    // todo:
+                    Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
                 }
             }
             // client connected to remote node
             else {
                 GRpcClient gRpcClient = clientHolder.getNode(presenceNode);
                 if(gRpcClient != null) {
-                    gRpcClient.sendMessage(to, message);
+                    String resp = gRpcClient.sendMessage(from, to, message);
+                    if("OK".equalsIgnoreCase(resp)) {
+                        Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.SENT));
+                    } else {
+                        Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
+                    }
                 }
                 // grpc node not in the cluster
                 else {
                     // todo:
+                    Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
                 }
             }
+        } else {
+            Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
         }
     }
 

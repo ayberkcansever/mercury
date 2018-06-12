@@ -1,17 +1,17 @@
-package com.github.ayberkcansever.mercury.io.event;
+package com.github.ayberkcansever.mercury.client.event;
 
 import com.github.ayberkcansever.mercury.client.MercuryClient;
 import com.github.ayberkcansever.mercury.event.Event;
 import lombok.Getter;
 import lombok.Setter;
 
-public class IOEvent extends Event {
+public class ClientEvent extends Event {
 
-    @Getter @Setter private IOEventType type;
     @Getter @Setter private MercuryClient mercuryClient;
+    @Getter @Setter private ClientEventType type;
 
-    public IOEvent(MercuryClient mercuryClient, IOEventType type) {
-        this.type = type;
+    public ClientEvent(MercuryClient mercuryClient, ClientEventType type) {
         this.mercuryClient = mercuryClient;
+        this.type = type;
     }
 }

@@ -1,15 +1,18 @@
 syntax = "proto3";
 package com.github.ayberkcansever.mercury.grpc;
 
+service MessageService {
+  rpc send(MessageRequest) returns (MessageResponse){};
+}
+
 message MessageRequest {
-  string to = 1;
-  string message = 2;
+  string from = 1;
+  string to = 2;
+  string message = 3;
 }
 
 message MessageResponse {
   string resp = 1;
 }
 
-service MessageService {
-  rpc send(MessageRequest) returns (MessageResponse);
-}
+

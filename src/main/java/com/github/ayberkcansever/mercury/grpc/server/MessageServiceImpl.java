@@ -1,9 +1,9 @@
 package com.github.ayberkcansever.mercury.grpc.server;
 
+import com.github.ayberkcansever.mercury.client.MercuryClient;
+import com.github.ayberkcansever.mercury.client.MercuryClientHolder;
 import com.github.ayberkcansever.mercury.grpc.Mercury;
 import com.github.ayberkcansever.mercury.grpc.MessageServiceGrpc;
-import com.github.ayberkcansever.mercury.io.MercuryClient;
-import com.github.ayberkcansever.mercury.io.MercuryClientHolder;
 
 public class MessageServiceImpl extends MessageServiceGrpc.MessageServiceImplBase {
 

@@ -1,6 +1,6 @@
 package com.github.ayberkcansever.mercury.config;
 
-import com.github.ayberkcansever.mercury.io.MercuryClient;
+import com.github.ayberkcansever.mercury.client.MercuryClient;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
