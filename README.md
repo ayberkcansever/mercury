@@ -51,5 +51,22 @@ These listeners can be registered after the Mercury initialization:
 
 Now we have a Mercury node which is ready to be a piece of a Mercury cluster and a client can connect to the node through the server socket. Mercury **does not** care the protocol you implement, it only delivers the messages. So you are free to implement your own messaging protocol.
 
+The connected clients must be identified for receiving messages. When a client connects to Mercury cluster, a random unique id is assigned to the client but it is not identified yet. For client identification it must prove its identity through the main application. The main application can apply a login mechanism or some other mechanism to identify the client. It is up to the main application and the message protocol. But the important thing is to call **identify** method of the Client class. For example, let's say that the client sends a message **id:Alice** for identify itself after connecting to the socket:
+
+```java
+
+public class Client extends MercuryClient {
+    @Override
+    protected void handleMessage(String message) {
+        if(message.startsWith("id:")) {
+            identify(message.split("id:")[1].trim());
+        } 
+    }
+}
+```
+
+Now this client is Alice and any other clients can send messages to Alice. 
+**MercuryClient** has a **route(String to, String message)** method to send messages to the target clients. It is straightforward to send message after deciding details of the messaging protocol that main application implements.
+
 If your application is a Spring boot application, you do not need to annotate your main class **(@SpringBootApplication)** and do not need to run Spring application **(SpringApplication.run)** if you initialized Mercury, because Mercury is a Spring boot application and initialize the application context for you :P
 
