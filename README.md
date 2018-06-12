@@ -2,7 +2,7 @@
 Mercury is highly-scalable and distributed socket messaging platform based on Netty as socket framework, Apache Ignite as caching platform and Google Protocol Buffers as remote procedure calls.
 
 # When to use Mercury?
-While developing any kind of messaging applications (IoT device-to-device or device-to-server messaging, instant messaging mobile/web etc.), we build a socket based server application as an orientation platform. When system load increases we have to add new server nodes, then we have a new problem to deal with: **Which client is connected to which server?**
+While developing any kind of messaging applications (IoT device-to-device or device-to-server messaging, online game server, instant messaging mobile/web etc.), we build a socket based server application as an orientation platform. When system load increases we have to add new server nodes, then we have a new problem to deal with: **Which client is connected to which server?**
 
 To overcome this problem, we implement a distributed cache solution for knowing which client is connected which node. After implementing the cache solution, we know the presence of the clients but this time a new problem occurs: **The client-to-client messages must be transferred from server node to server node if the clients are connected to different server nodes.**  Then we choose a server-to-server communication platform to deal with this problem and implement it.
 
