@@ -1,6 +1,8 @@
 package com.github.ayberkcansever.mercury.io.event;
 
-public enum IOEventType {
+import com.github.ayberkcansever.mercury.event.EventType;
+
+public enum IOEventType implements EventType {
 
     CLIENT_CONNECTED("connected"),
     CLIENT_DISCONNECTED("disconnected");

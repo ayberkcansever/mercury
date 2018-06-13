@@ -21,7 +21,7 @@ public class DemoApplication {
 		MercuryConfig mercuryConfig = new MercuryConfig.MercuryConfigBuilder()
 				.setGRpcIp("127.0.0.1")
 				.setGRpcPort(6667)
-				.setServerPort(5556)
+				.setServerPort(5557)
 				.setClientClass(DemoClient.class)
 				.setMessageThreadPoolTaskExecutor(executor)
 				.build();

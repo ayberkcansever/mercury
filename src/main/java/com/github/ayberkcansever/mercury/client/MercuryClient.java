@@ -27,8 +27,10 @@ public abstract class MercuryClient extends ChannelInboundHandlerAdapter {
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         ctx.fireChannelUnregistered();
-        MercuryClientHolder.removeClient(id);
-        Mercury.instance().getCacheHolder().getPresenceCache().remove(id);
+        if(id != null) {
+            MercuryClientHolder.removeClient(id);
+            Mercury.instance().getCacheHolder().getPresenceCache().remove(id);
+        }
         Mercury.instance().getEventBus().postEvent(new IOEvent(this, IOEventType.CLIENT_DISCONNECTED));
     }
 

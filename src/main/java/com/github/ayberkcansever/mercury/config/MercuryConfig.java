@@ -12,6 +12,7 @@ public class MercuryConfig {
     @Getter @Setter private Class<? extends MercuryClient> clientClass;
     @Getter @Setter private int serverPort = 5555;
     @Getter @Setter private ThreadPoolTaskExecutor messageThreadPoolTaskExecutor;
+    @Getter @Setter private String tcpDiscoveryAddress = "127.0.0.1:47500";
 
     public String getServerUrl() {
          return gRpcIp.concat(":").concat(String.valueOf(gRpcPort));
@@ -47,6 +48,11 @@ public class MercuryConfig {
 
         public MercuryConfigBuilder setMessageThreadPoolTaskExecutor(ThreadPoolTaskExecutor executor) {
             mercuryConfig.setMessageThreadPoolTaskExecutor(executor);
+            return this;
+        }
+
+        public MercuryConfigBuilder setTcpDiscoveryAddress(String tcpDiscoveryAddress) {
+            mercuryConfig.setTcpDiscoveryAddress(tcpDiscoveryAddress);
             return this;
         }
 

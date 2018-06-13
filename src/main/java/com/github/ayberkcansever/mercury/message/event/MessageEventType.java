@@ -1,6 +1,8 @@
 package com.github.ayberkcansever.mercury.message.event;
 
-public enum MessageEventType {
+import com.github.ayberkcansever.mercury.event.EventType;
+
+public enum MessageEventType implements EventType {
 
     SENT("sent"),
     NOT_SENT("not_sent");

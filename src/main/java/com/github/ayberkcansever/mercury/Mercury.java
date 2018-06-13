@@ -98,7 +98,7 @@ public class Mercury {
                         Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
                     }
                 }
-                // grpc node not in the cluster
+                // gRPC node not in the cluster
                 else {
                     // todo:
                     Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));

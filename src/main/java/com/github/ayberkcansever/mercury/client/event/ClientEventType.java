@@ -1,6 +1,8 @@
 package com.github.ayberkcansever.mercury.client.event;
 
-public enum ClientEventType {
+import com.github.ayberkcansever.mercury.event.EventType;
+
+public enum ClientEventType implements EventType {
 
     IDENTIFIED("identified");
 

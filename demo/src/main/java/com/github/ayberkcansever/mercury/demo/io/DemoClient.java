@@ -1,8 +1,11 @@
 package com.github.ayberkcansever.mercury.demo.io;
 
 import com.github.ayberkcansever.mercury.client.MercuryClient;
+import com.github.ayberkcansever.mercury.demo.listener.DemoIOEventListener;
 
 public class DemoClient extends MercuryClient {
+
+    private DemoIOEventListener d = new DemoIOEventListener();
 
     @Override
     protected void handleMessage(String message) {
@@ -11,7 +14,7 @@ public class DemoClient extends MercuryClient {
         } else if (message.startsWith("send:")) {
             String to = message.split(":")[1];
             String msg = message.split(":")[2];
-            this.route(to, msg);
+            route(to, msg);
         }
     }
 

@@ -37,11 +37,11 @@ public class LoadTest {
         }
 
         public void run() {
-            for(int i = 1; i <= 4; i++) {
+            for(int i = 1; i <= 1; i++) {
                 if(senderClient.getId() == i) {
                     continue;
                 }
-                for(int j = 0; j < 3000; j++) {
+                for(int j = 0; j < 10; j++) {
                     senderClient.send("send:client" + i + ":msg" + j + "\0");
                 }
             }

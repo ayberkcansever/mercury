@@ -64,6 +64,11 @@ public class CacheHolder implements LifecycleBean {
                     .evaluate(doc, XPathConstants.NODE);
             gRpcPortNode.getAttributes().getNamedItem("value").setNodeValue(String.valueOf(Mercury.getMercuryConfig().getGRpcPort()));
 
+            Node tcpDiscoveryAddressNode =
+                    (Node) xPath.compile("/beans/bean/property[@name='discoverySpi']/bean/property/bean/property/list/value")
+                    .evaluate(doc, XPathConstants.NODE);
+            tcpDiscoveryAddressNode.setTextContent(Mercury.getMercuryConfig().getTcpDiscoveryAddress());
+
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             Source xmlSource = new DOMSource(doc);
             Result outputTarget = new StreamResult(outputStream);
@@ -74,7 +79,6 @@ public class CacheHolder implements LifecycleBean {
             e.printStackTrace();
         }
 
-        //ignite = Ignition.start("ignite-config.xml");
         gRpcServer.init();
 
         IgnitePredicate<DiscoveryEvent> nodeJoinedListener = evt -> {
