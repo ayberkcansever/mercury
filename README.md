@@ -15,8 +15,8 @@ The figures below show the single vs multi node socket messaging systems.
 ### Easy:
 <img src="https://preview.ibb.co/mCT3Ud/Screen_Shot_2018_06_12_at_16_14_22.png" width="500" height="300">
 
-### Complex:
-<img src="https://preview.ibb.co/eZp7Ny/Screen_Shot_2018_06_12_at_16_14_14.png" width="800" height="500">
+### Complex (Mercury Cluster):
+<img src="https://preview.ibb.co/euucqJ/Screen_Shot_2018_06_13_at_14_04_11.png" width="800" height="500">
 
 # How to use Mercury?
 
