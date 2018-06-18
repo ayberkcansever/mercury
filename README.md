@@ -1,16 +1,16 @@
 # Mercury
-Mercury is highly-scalable and distributed socket messaging platform based on Netty as socket framework, Apache Ignite as caching platform and Google Protocol Buffers as remote procedure calls.
+Mercury is highly-scalable and distributed socket messaging platform based on: Netty as socket framework, Apache Ignite as caching platform and Google Protocol Buffers as remote procedure calls.
 
 # When to use Mercury?
-While developing any kind of messaging applications (IoT device-to-device or device-to-server messaging, online gaming server, instant messaging mobile/web etc.), we build a socket based server application as an orientation platform. When load increases we have to add new server nodes to the system, then we have a new problem to deal with: **Which client is connected to which server?**
+While developing any kind of messaging applications (IoT device-to-device or device-to-server messaging, online gaming server, instant messaging for mobile etc.), we build a socket based server application as an orientation platform. When load start to increase, we have to add new server nodes to the system and then we have a new problem to deal with: **Which client is connected to which server?**
 
-To overcome this problem, we implement a distributed cache solution. After this implementation, we know the presence of the clients anymore but this time a new problem occurs: **The client-to-client messages must be transferred from one server node to other if the clients are connected to different nodes.**  Then we choose a server-to-server communication platform to deal with this problem and implement it.
+To overcome this problem, we implement a distributed cache solution. After this implementation, we know the presence of the clients anymore but this time a new problem occurs: **The client-to-client messages must be transferred from one server node to other if the clients are connected to different nodes.**  Then we choose a server-to-server communication platform to deal with this problem and implement it or prefer to use the RPC features of our distributed cache implementation which may not be suitable for our needs.
 
-Finally, if you do not want to solve these problems again and again, you can add **Mercury** to your project and have a prepared, highly-scalable and distributed messaging platform for your new application. 
+If you do not want to solve these problems again and again, you can add **Mercury** to your project and have a prepared, highly-scalable and distributed messaging platform for your new application. 
 
-When a new Mercury node starts to run, it automatically connects to the Mercury cluster, starts to accept client connections, gets ready to accept messages from clients connected and forward to the clients connected to other Mercury nodes.
+When a new Mercury node starts to run, it automatically connects to the Mercury cluster, starts to accept client connections, gets ready to accept messages from connected clients and forward them to the connected clients on other Mercury nodes.
 
-The figures below show the single vs multi node socket messaging systems.
+The figures below show the single vs multi node socket messaging systems basically.
 
 ### Easy:
 <img src="https://preview.ibb.co/mCT3Ud/Screen_Shot_2018_06_12_at_16_14_22.png" width="500" height="300">
@@ -25,7 +25,7 @@ Add dependency to your pom.xml:
 <dependency>
   <groupId>com.github.ayberkcansever</groupId>
   <artifactId>mercury</artifactId>
-  <version>1.0.0</version>
+  <version>{$latest.version}</version>
 </dependency>
 ```
 
@@ -62,9 +62,9 @@ These listeners can be registered after Mercury initialization:
     mercury.getEventBus().register(new SomeMessageEventListener());
 ```
 
-Now we have a Mercury node which is ready to be a piece of a Mercury cluster. A client can connect to this node through the server socket. Mercury **does not** care the messaging protocol you implement, it only delivers the string messages. **So you are free to implement your own messaging protocol based on JSON or XML or use XMPP, LEMP etc.**
+Now we have a Mercury node which is ready to be a piece of a Mercury cluster. A client can connect to this node through the server socket. Mercury **does not** care the messaging protocol you implement, it only delivers the string messages to the clients. **So you are free to implement your own messaging protocol based on JSON or XML or use XMPP, LEMP etc.**
 
-After a client connects to a node, it must be identified for receiving messages. After the connection a random unique id is assigned to this client but it is not really identified yet. It must prove its identity through the main application. The main application can apply a login mechanism or some other mechanisms to identify the client. It is up to the main application and the messaging protocol it implements. But the important thing is to call **identify** method of the Client class after successful identification. 
+After a client connects to a node, it must identify itself for receiving and sending messages. After the connection, a random unique id is assigned to the client but it is not really identified yet. It must prove its identity through the main application. The main application can apply a login mechanism or some other to identify the client. It is up to the main application and the messaging protocol it implements. But the important thing is to call **identify** method of the Client class after successful identification. 
 
 For example, let's say that the client sends a message **id:Alice** for identifying itself after connecting to the socket, our Client code should be:
 
