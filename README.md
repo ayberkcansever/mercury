@@ -20,6 +20,15 @@ The figures below show the single vs multi node socket messaging systems.
 
 # How to use Mercury?
 
+Add dependency to your pom.xml:
+```xml
+<dependency>
+  <groupId>com.github.ayberkcansever</groupId>
+  <artifactId>mercury</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 It is enough to examine the demo project to have knowledge about Mercury but let's deep dive to the code a little bit:
 
 At startup of your main application it is enough to initialize Mercury with the appropriate configuration.
