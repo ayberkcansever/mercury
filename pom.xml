@@ -4,7 +4,7 @@
 
 	<groupId>com.github.ayberkcansever</groupId>
 	<artifactId>mercury</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>mercury</name>
@@ -35,7 +35,7 @@
         <connection>scm:git:git://github.com/ayberkcansever/mercury.git</connection>
         <developerConnection>scm:git:git@github.com:mercury/mercury.git</developerConnection>
         <url>https://github.com/ayberkcansever/mercury.git</url>
-        <tag>mercury-1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
 	<dependencies>
