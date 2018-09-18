@@ -4,6 +4,7 @@ import com.github.ayberkcansever.mercury.client.MercuryClient;
 import com.github.ayberkcansever.mercury.client.MercuryClientHolder;
 import com.github.ayberkcansever.mercury.grpc.Mercury;
 import com.github.ayberkcansever.mercury.grpc.MessageServiceGrpc;
+import com.github.ayberkcansever.mercury.utils.GRpcUtil;
 
 public class MessageServiceImpl extends MessageServiceGrpc.MessageServiceImplBase {
 
@@ -18,14 +19,14 @@ public class MessageServiceImpl extends MessageServiceGrpc.MessageServiceImplBas
         if(mercuryClient != null) {
             mercuryClient.send(request.getMessage());
             response = Mercury.MessageResponse.newBuilder()
-                    .setResp("OK")
+                    .setResp(GRpcUtil.GRPC_MESSAGE_OK)
                     .build();
         }
         // client not connected but present in the cache
         else {
             // todo:
             response = Mercury.MessageResponse.newBuilder()
-                    .setResp("NOK")
+                    .setResp(GRpcUtil.GRPC_MESSAGE_NOK)
                     .build();
         }
 

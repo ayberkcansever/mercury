@@ -71,7 +71,8 @@ public class CacheHolder implements LifecycleBean {
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             Source xmlSource = new DOMSource(doc);
-            Result outputTarget = new StreamResult(outputStream);
+            Result outputTarget = new StreamResult(outputStream
+            );
             TransformerFactory.newInstance().newTransformer().transform(xmlSource, outputTarget);
             ignite = Ignition.start(new ByteArrayInputStream(outputStream.toByteArray()));
 

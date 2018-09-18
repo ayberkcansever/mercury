@@ -10,6 +10,7 @@ import com.github.ayberkcansever.mercury.grpc.client.GRpcClient;
 import com.github.ayberkcansever.mercury.grpc.server.GRpcServer;
 import com.github.ayberkcansever.mercury.message.event.MessageEvent;
 import com.github.ayberkcansever.mercury.message.event.MessageEventType;
+import com.github.ayberkcansever.mercury.utils.GRpcUtil;
 import com.google.common.base.Strings;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +93,7 @@ public class Mercury {
                 GRpcClient gRpcClient = clientHolder.getNode(presenceNode);
                 if(gRpcClient != null) {
                     String resp = gRpcClient.sendMessage(from, to, message);
-                    if("OK".equalsIgnoreCase(resp)) {
+                    if(GRpcUtil.GRPC_MESSAGE_OK.equalsIgnoreCase(resp)) {
                         Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.SENT));
                     } else {
                         Mercury.instance().getEventBus().postEvent(new MessageEvent(from, to, message, MessageEventType.NOT_SENT));
