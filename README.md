@@ -92,6 +92,6 @@ YourKit, LLC is the creator of <a href="https://www.yourkit.com/java/profiler/">
 and <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
 innovative and intelligent tools for profiling Java and .NET applications.
 
-<img src="https://www.yourkit.com/images/yklogo.png" width="100" height="100">
+<img src="https://www.yourkit.com/images/yklogo.png">
 
 
