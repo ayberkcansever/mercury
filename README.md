@@ -87,3 +87,8 @@ You see that **identify** method is called if message starts with **id:** Now th
 ## Important
 If your application is a Spring boot application, you do not need to annotate your main class **(@SpringBootApplication)** and do not need to run Spring application **(SpringApplication.run)** if you initialize Mercury because Mercury is a Spring boot application and initialize the application context for you :P
 
+YourKit supports open source projects with its full-featured Java Profiler.
+YourKit, LLC is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>
+and <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
+innovative and intelligent tools for profiling Java and .NET applications.
+
