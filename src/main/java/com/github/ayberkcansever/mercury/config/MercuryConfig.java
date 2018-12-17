@@ -1,16 +1,18 @@
 package com.github.ayberkcansever.mercury.config;
 
 import com.github.ayberkcansever.mercury.client.MercuryClient;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+@Data
 public class MercuryConfig {
 
-    @Getter @Setter private String gRpcIp = "127.0.0.1";
-    @Getter @Setter private int gRpcPort = 7777;
-    @Getter @Setter private Class<? extends MercuryClient> clientClass;
-    @Getter @Setter private int serverPort = 5555;
+    private String gRpcIp = "127.0.0.1";
+    private int gRpcPort = 7777;
+    private Class<? extends MercuryClient> clientClass;
+    private int serverPort = 5555;
     @Getter @Setter private ThreadPoolTaskExecutor messageThreadPoolTaskExecutor;
     @Getter @Setter private String tcpDiscoveryAddress = "127.0.0.1:47500";
 
