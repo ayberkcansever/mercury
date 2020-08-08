@@ -25,7 +25,7 @@ Add dependency to your pom.xml:
 <dependency>
   <groupId>com.github.ayberkcansever</groupId>
   <artifactId>mercury</artifactId>
-  <version>{$latest.version}</version>
+  <version>${latest.version}</version>
 </dependency>
 ```
 
